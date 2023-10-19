@@ -7,28 +7,35 @@ const rl = readline.createInterface({
     output: process.stdout
 });
 
-const dataPath = './data/userData.json';
+const dataPath = './data/contacts.json';
 
-function buatFolderDanFile() {
-    if (!fs.existsSync('data')) {
-        fs.mkdirSync('data');
+const buatFolderDanFile = () => {
+    if (!fs.existsSync('./data')) {
+        fs.mkdirSync('./data');
+        console.log("folder anda sudah dibuat")
+    }else{
+        console.log("Folder anda sudah ada")
     }
 
     if (!fs.existsSync(dataPath)) {
         fs.writeFileSync(dataPath, '[]');
+        console.log('File contacts.json berhasil dibuat.');
+    } else {
+        console.log('File contacts.json sudah ada.');
     }
-}
+};
 
-function simpanDataKeJSON(data) {
+const simpanDataKeJSON = (data) => {
     fs.writeFileSync(dataPath, JSON.stringify(data, null, 2));
-}
+};
 
-function tambahDataKeJSON(nama, handphone, email) {
+
+const tambahDataKeJSON = (nama, handphone, email) => {
     buatFolderDanFile();
     const existingData = JSON.parse(fs.readFileSync(dataPath));
     existingData.push({ nama, handphone, email });
     simpanDataKeJSON(existingData);
-}
+};
 
 function inputNama() {
     rl.question("Masukkan nama anda ? ", (inputNama) => {
@@ -58,6 +65,7 @@ function inputEmail(nama, handphone) {
     rl.question("Masukkan email anda ? ", (email) => {
         if (validator.isEmail(email)) {
             tambahDataKeJSON(nama, handphone, email);
+            console.log(`Nama saya adalah ${nama}, nomor telepon saya adalah ${handphone}, dan email saya ${email}. Thank You!!`);
             console.log(`Data anda telah disimpan. Terima kasih!`);
             rl.close();
         } else {
