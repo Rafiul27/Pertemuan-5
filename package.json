@@ -1,0 +1,17 @@
+{
+  "name": "pertemuan-5",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./Tugas/index5.js",
+    "clr": "clear",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "nodemon": "^3.0.1",
+    "validator": "^13.11.0"
+  }
+}
